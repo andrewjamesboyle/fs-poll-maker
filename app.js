@@ -1,12 +1,13 @@
 // import functions and grab DOM elements
 import { renderPoll } from './render-utils.js';
-import { createPoll, getPoll } from './fetch-utils.js';
+import { createPoll, getPolls } from './fetch-utils.js';
 
 const pollFormEl = document.getElementById('form-input');
 const currentPollEl = document.getElementById('current-poll-container');
 const voteABtn = document.getElementById('vote-a');
 const voteBBtn = document.getElementById('vote-b');
 const closePollBtn = document.getElementById('close-poll');
+const pastPollsEl = document.getElementById('past-polls-container');
 
 // let state
 
@@ -65,5 +66,13 @@ function displayCurrentPoll() {
 }
 
 async function displayAllPolls() {
-    pastPoll
+    pastPollsEl.textContent = '';
+
+    const pastPollsData = await getPolls();
+    console.log(pastPollsData);
+
+    for (let poll of pastPollsData) {
+        const pastPolls = renderPoll(poll);
+        pastPollsEl.append(pastPolls);
+    }
 }

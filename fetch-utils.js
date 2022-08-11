@@ -8,7 +8,7 @@ export async function createPoll(poll) {
     return response;
 }
 
-export async function getPoll() {
+export async function getPolls() {
     const response = await client.from('polls').select('*');
     return response;
 }
