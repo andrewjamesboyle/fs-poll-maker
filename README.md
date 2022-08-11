@@ -1,26 +1,60 @@
-## The Golden Rule: 
+HTML Elements
+  1. Poll creation form
+    1. Question input
+    2. Option A input
+    3. Option B input
+    4. Start/submit poll button
 
-🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
+  2. Current Poll Container
+    1. Div for question
+    2. Divs for options
+    3. span for votes
+    4. buttons for voting
+    5. close poll button
 
-If you work on more than one feature at a time, you are guaranteed to multiply your bugs and your anxiety.
+  3. Container to display pastPolls
 
-## Making a plan
+STATE
+  let votes A = 0
+  let votes B = 0
+  let question = '';
+  let option A = '';
+  let option B = '';
 
-1) **Make a drawing of your app. Simple "wireframes"** 
-1) **Look at the drawing and name the HTML elements you'll need to realize your vision**
-1) **Look at the drawing and imagine using the app. What _state_ do you need to track?** 
-1) **For each HTML element ask: Why do I need this? (i.e., "we need div to display the results in")** 
-1) **Once we know _why_ we need each element, think about how to implement the "Why" as a "How" (i.e., `resultsEl.textContent = newResults`)**
-1) **Find all the 'events' (user clicks, form submit, on load etc) in your app. Ask one by one, "What happens when" for each of these events. Does any state change? Does any DOM update?**
-1) **Think about how to validate each of your features according to a Definition of Done. (Hint: console.log usually helps here.)**
-1) **Consider what features _depend_ on what other features. Use this dependency logic to figure out what order to complete tasks.**
+***Instead of setting state, you are going to get state from supabase. So instead, build a poll object and set key value pairs to match table columns and get rows from table
 
-Additional considerations:
-- Ask: which of your HTML elements need to be hard coded, and which need to be dynamically generated?
-- Consider your data model. 
-  - What kinds of objects (i.e., Dogs, Friends, Todos, etc) will you need? 
-  - What are the key/value pairs? 
-  - What arrays might you need? 
-  - What needs to live in a persistence layer?
-- Is there some state we need to initialize?
-- Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+SB Table
+
+  name: polls
+  columns: option_a_votes, option_b_votes, option_a, option_b, question
+
+EVENTS
+
+  1. submit form captures form data and displays to current poll container, submit resets form
+  2. you can vote in the current poll and increment votesA or votesB;
+  3. close poll button sends data to supabase as an object with rows (properties)
+    - supabase builds table
+    - getPolls grabs table back from supabase
+    - renderpoll builds div's for table data
+    - displayAllPolls displays polls in pastPollsEl container
+
+Functions
+
+  1. displayAllPolls - grabs table data from supabase
+  2. createPoll - sends object to supabase to add to table
+  3. getPolls - pulls data from supabase
+  4. displayCurrentPoll - fills up currentPollEl container
+  5. renderPoll - builds divs and other html elements
+
+PLAN
+
+  1. Set up HTML for form
+  2. grab form El 
+  3. add event listener
+  4. console.log form submit (ACP)
+  5. set up form to capture user input (ACP)
+  6. get currentpoll to display by building displayCurrentPoll function, this should call renderPoll and append return to currentPollEl (ACP)
+  7. get vote button event listeners to increment state, console.log
+  8. call function to get votes to display (ACP)
+  9. build fetch-utils function createPoll to take state object and build rows in supabase table. console.log outgoing data (ACP)
+  10. build getPolls function to pull table data back in, (console.log getPolls data) (ACP) use renderPoll to build divs, append return to pastPollsEl, all this will be nested inside displayAllPolls
