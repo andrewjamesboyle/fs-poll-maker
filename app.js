@@ -1,8 +1,16 @@
 // import functions and grab DOM elements
 
+
+const pollFormEl = document.getElementById('form-input');
+
+
 // let state
 
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
+
+
+
+pollFormEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  console.log('form submitted');
+})

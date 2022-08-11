@@ -12,17 +12,33 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/global.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <title>Web App</title>
 </head>
 
 <body>
     <header>
-        <img src="/assets/html_css_js.png">
-        <h1>Web App</h1>
+        <h1>Poll Tracker</h1>
     </header>
 
     <main>
-
+        <section>
+            <form id="form-input" name="form-input">
+                <label>
+                    Question
+                    <input name="question" />
+                </label>
+                <label>
+                    Option A
+                    <input name="option-a" />
+                </label>
+                <label>
+                    Option B
+                    <input name="option-b" />
+                </label>
+                <button>Start Poll!</button>
+            </form>
+        </section>
     </main>
 
     <footer>&copy;2022 Software Developer</footer>
