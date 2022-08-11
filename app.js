@@ -1,8 +1,8 @@
 // import functions and grab DOM elements
-
+import { renderPoll } from './render-utils.js';
 
 const pollFormEl = document.getElementById('form-input');
-
+const currentPollEl = document.getElementById('current-poll-container');
 
 // let state
 
@@ -35,5 +35,7 @@ pollFormEl.addEventListener('submit', (e) => {
 
 
 function displayCurrentPoll() {
-  
+  currentPollEl.textContent = '';
+  const currentPollData = renderPoll(currentPoll);
+  currentPollEl.append(currentPollData);
 }
