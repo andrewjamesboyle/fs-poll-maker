@@ -1,4 +1,4 @@
-// import functions and grab DOM elements
+
 import { renderPoll } from './render-utils.js';
 import { createPoll, getPolls } from './fetch-utils.js';
 
@@ -9,8 +9,6 @@ const voteBBtn = document.getElementById('vote-b');
 const closePollBtn = document.getElementById('close-poll');
 const pastPollsEl = document.getElementById('past-polls-container');
 
-// let state
-
 const currentPoll = {
     question: '',
     optionA: '',
@@ -18,8 +16,6 @@ const currentPoll = {
     votesA: 0,
     votesB: 0
 };
-
-
 
 pollFormEl.addEventListener('submit', (e) => {
     e.preventDefault();
