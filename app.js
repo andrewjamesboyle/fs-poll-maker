@@ -72,3 +72,5 @@ async function displayAllPolls() {
         pastPollsEl.append(pastPolls);
     }
 }
+
+displayAllPolls();
